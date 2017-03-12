@@ -78,7 +78,16 @@ trait CrudController[T <: Entity, CreateForm, UpdateForm] extends ControllerHelp
     implicit request =>
       val result = for {
         createForm <- validateForm(createForm)
-        entity <- createByForm()
+        entity <- createByForm(createForm)
+        id <- repo.insert(entity)
+      } yield id
+      result match {
+        case Success(id) => Ok(successJson(JsNumber(id), "Successfully updated item with id: " + id))
+        case Failure(e) => e match {
+          case _: BadRequestParameter => badRequest("Invalid request form for " + this.getClass.toString)
+          case _: DataIntegrityViolationException => badRequest(message(e.getMessage))
+          case _ => logUnknownError(e)
+        }
       }
   }
 }
