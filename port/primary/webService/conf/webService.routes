@@ -1,0 +1,10 @@
+# Routes
+# This file defines all application routesBackup (Higher priority routesBackup first)
+# ~~~~
+
+# User
+#GET         /user               @port.primary.webService.restAdapter.controllers.masterData.UserController.getAll(allow_inactive: Option[String])
+
+
+
+GET         /assets/*file        controllers.web.Assets.versioned(path="/public/lib/web", file: Asset)
