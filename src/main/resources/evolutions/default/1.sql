@@ -7,7 +7,7 @@ CREATE TABLE users(
   email        VARCHAR(255) COLLATE utf8_bin NOT NULL,
   password     VARCHAR(45)  COLLATE utf8_bin NOT NULL,
   salt         VARCHAR(45)  COLLATE utf8_bin DEFAULT NULL,
-  is_deleted   BOOL         DEFAULT FALSE,
+  is_inactive   BOOL         DEFAULT FALSE,
   PRIMARY KEY (user_id),
   UNIQUE KEY email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

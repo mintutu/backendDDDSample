@@ -1,4 +1,4 @@
-package user
+package port.secondary.database.user
 
 import application.dto.UserRecord
 import com.google.inject.{Inject, Singleton}

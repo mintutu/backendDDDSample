@@ -1,4 +1,4 @@
-package user
+package port.secondary.database.user
 
 import java.sql.Connection
 

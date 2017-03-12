@@ -3,8 +3,7 @@
 # ~~~~
 
 # User
-#GET         /user               @port.primary.webService.restAdapter.controllers.masterData.UserController.getAll(allow_inactive: Option[String])
+GET         /user               @port.primary.webService.restAdapter.controllers.masterData.UserController.getAll(allow_inactive: Option[String])
 
 
 
-GET         /assets/*file        controllers.web.Assets.versioned(path="/public/lib/web", file: Asset)

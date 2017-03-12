@@ -1,4 +1,4 @@
-package restAdapter.controllers.commons
+package port.primary.webService.restAdapter.controllers.commons
 
 import play.api.Logger
 import play.api.i18n.MessagesApi

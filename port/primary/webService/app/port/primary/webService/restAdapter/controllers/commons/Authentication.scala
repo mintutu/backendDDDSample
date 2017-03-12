@@ -1,5 +1,4 @@
-package restAdapter.controllers.commons
-
+package port.primary.webService.restAdapter.controllers.commons
 
 import play.api.mvc.{Request, RequestHeader, Result}
 import play.api.mvc.Results._
@@ -27,6 +26,7 @@ trait Authentication {
       isTimedOut
     }
     result.getOrElse(false)
+    true
   }
 
   def onUnauthorized(request: Request[_])(result: => Result): Result = {

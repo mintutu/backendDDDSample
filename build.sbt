@@ -44,7 +44,7 @@ lazy val port =
 
 lazy val portWebService =
   (project in file("port/primary/webService"))
-    .enablePlugins(PlayScala, SbtWeb)
+    .enablePlugins(PlayScala)
     .dependsOn(utility, application, domain)
     .settings(commonSettings)
     .settings(

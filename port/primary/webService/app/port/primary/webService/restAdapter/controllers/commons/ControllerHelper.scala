@@ -1,4 +1,4 @@
-package restAdapter.controllers.commons
+package port.primary.webService.restAdapter.controllers.commons
 
 import java.io.{PrintWriter, StringWriter}
 

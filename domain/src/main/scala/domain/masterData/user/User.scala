@@ -17,12 +17,18 @@ case class User (userId: Long,
     crendential.checkPassword(rawPassword)
   }
 
-  def update(newUserName : String, newEmail: String, newInactiveStatus: Boolean, newCrendential: Credential): User = {
+  def update(newUserName : String, newEmail: String): User = {
     this.copy(
       userName = newUserName,
-      email = newEmail,
-      isInactive = newInactiveStatus,
-      crendential = newCrendential
+      email = newEmail
     )
+  }
+
+  def updatePassword(newPassword: String): User = {
+    this.copy(crendential = crendential.changePassword(newPassword))
+  }
+
+  def updateEmail(newEmail: String): User = {
+    this.copy(email = newEmail)
   }
 }
