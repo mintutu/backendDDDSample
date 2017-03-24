@@ -12,6 +12,6 @@ class UserFactory @Inject() (userRepo: UserRepository){
   def createUser(userName: String,
                  email: String): Try[(User, String)] = {
     val (newCredential, generatedPassword) = Credential.newRandomCredential
-    Try(User(-1, userName, email, isInactive = true, newCredential), generatedPassword)
+    Try(User(-1, userName, email, isInactive = false, newCredential), generatedPassword)
   }
 }

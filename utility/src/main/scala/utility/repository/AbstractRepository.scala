@@ -1,6 +1,8 @@
 package utility.repository
 
-import scala.util.Try
+import utility.exceptions.DataIntegrityViolationException
+
+import scala.util.{Failure, Try}
 
 
 trait AbstractRepository[E, R] {
@@ -15,8 +17,19 @@ trait AbstractRepository[E, R] {
     dao.getById(id, allowInactive).map(record2Entity)
   def getAll(allowInactive: Boolean = false) : Try[Seq[E]] =
     dao.getAll(allowInactive).map(_.map(record2Entity))
-  def insert(entity: E) : Try[Long] = dao.insert(entity2Record(entity))
-  def update(entity: E) : Try[Boolean] = dao.update(entity2Record(entity)) map (rowAffected => rowAffected == 1)
+  def insert(entity: E) : Try[Long] = {
+    if (checkInvariant(entity))
+      dao.insert(entity2Record(entity))
+    else
+      Failure(new DataIntegrityViolationException(CONSTRAINT_VIOLATION_MSG))
+  }
+  def update(entity: E) : Try[Boolean] = {
+    if (checkInvariant(entity))
+      dao.update(entity2Record(entity)) map (rowAffected => rowAffected == 1)
+    else
+      Failure(new DataIntegrityViolationException(CONSTRAINT_VIOLATION_MSG))
+  }
+
   def delete(id: Long) : Try[Boolean] = dao.delete(id) map (rowAffected => rowAffected == 1)
 
 

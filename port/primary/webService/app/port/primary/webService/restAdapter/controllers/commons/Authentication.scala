@@ -17,6 +17,9 @@ trait Authentication {
 
   def userSession[A](request: Request[A]): Map[String, String] = request.session.data
 
+  def getCurrentUserId[A](implicit request: Request[A]): Long =
+    request.session("userId").toLong
+
   private def checkSessionData(m: Map[String, String]): Boolean = {
     val result = for {
       userId <- m.get("userId")

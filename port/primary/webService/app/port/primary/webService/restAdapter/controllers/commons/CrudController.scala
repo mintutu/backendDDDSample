@@ -85,7 +85,7 @@ trait CrudController[T <: Entity, CreateForm, UpdateForm] extends ControllerHelp
         case Success(id) => Ok(successJson(JsNumber(id), "Successfully updated item with id: " + id))
         case Failure(e) => e match {
           case _: BadRequestParameter => badRequest("Invalid request form for " + this.getClass.toString)
-          case _: DataIntegrityViolationException => badRequest(message(e.getMessage))
+          case _: DataIntegrityViolationException => badRequest(e.getMessage)
           case _ => logUnknownError(e)
         }
       }

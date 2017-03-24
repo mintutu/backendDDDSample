@@ -3,7 +3,12 @@
 # ~~~~
 
 # User
-GET         /user               @port.primary.webService.restAdapter.controllers.masterData.UserController.getAll(allow_inactive: Option[String])
+GET         /api/user                   @port.primary.webService.restAdapter.controllers.masterData.UserController.getAll(allow_inactive: Option[String])
+POST        /api/user                   @port.primary.webService.restAdapter.controllers.masterData.UserController.create()
+
+# Authentication
+POST        /api/user/auth              @port.primary.webService.restAdapter.controllers.authentication.AuthController.processLogin()
+POST        /api/change-password        @port.primary.webService.restAdapter.controllers.authentication.AuthController.processChangePassword()
 
 
 

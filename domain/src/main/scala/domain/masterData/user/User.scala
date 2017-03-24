@@ -9,12 +9,12 @@ case class User (userId: Long,
                  userName: String,
                  email: String,
                  isInactive: Boolean,
-                 crendential: Credential
+                 credential: Credential
                  ) extends Entity {
   override val identity: Long = userId
 
   def checkLogin(rawPassword: String) : Boolean = {
-    crendential.checkPassword(rawPassword)
+    credential.checkPassword(rawPassword)
   }
 
   def update(newUserName : String, newEmail: String): User = {
@@ -25,7 +25,7 @@ case class User (userId: Long,
   }
 
   def updatePassword(newPassword: String): User = {
-    this.copy(crendential = crendential.changePassword(newPassword))
+    this.copy(credential = credential.changePassword(newPassword))
   }
 
   def updateEmail(newEmail: String): User = {
